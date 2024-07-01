@@ -1,0 +1,10 @@
+<template>
+  <div>
+    <TopNav />
+    <slot />
+  </div>
+</template>
+
+<script lang="ts" setup></script>
+
+<style></style>
