@@ -1,19 +1,21 @@
 <template>
-  <NuxtLayout>
-    <div class=" text-slate-700 text-2xl p-4">
-      Hi, Robin!!
-      Selamat datang di Nuxt page 
-      <Icon name="mdi:close" size="45"/>
-    </div>
-  </NuxtLayout>
+    <MainLayout>
+        <div class="pt-[80px] w-[calc(100%-90px)] max-w-[690px]">
+            <div v-for="post in $generalStore.posts" :key="post">
+                <PostMain v-if="post" :post="post" />
+            </div>
+        </div>
+    </MainLayout>
 </template>
 
-<script lang="ts" setup>
-  definePageMeta({
-      layout: 'default'
-  })
+<script setup>
+import MainLayout from '~/layouts/MainLayout.vue';
+const { $generalStore } = useNuxtApp()
+onMounted(async () => {
+    try {
+        $generalStore.getAllUsersAndPosts()
+    } catch (error) {
+        console.log(error)
+    }
+})
 </script>
-
-<style>
-
-</style>
